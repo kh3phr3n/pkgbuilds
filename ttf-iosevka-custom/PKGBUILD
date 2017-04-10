@@ -1,0 +1,29 @@
+# Maintainer: Remi Casanova <rc.dev@tuxico.com>
+# Contributor: Andy Kluger <AndyKluger@gmail.com>
+# Contributor: Markus Weimar <mail@markusweimar.de>
+
+pkgname=ttf-iosevka-custom
+pkgver=1.12.4
+pkgrel=1
+
+arch=('any')
+depends=('fontconfig' 'xorg-font-utils')
+makedepends=('git' 'npm' 'nodejs' 'otfcc' 'ttfautohint')
+
+license=('custom:OFL')
+url="https://be5invis.github.io/Iosevka/"
+pkgdesc="Spatial efficient monospace font family for programming."
+
+source=("https://github.com/be5invis/Iosevka/archive/v${pkgver}.tar.gz")
+sha256sums=("33e1c55527efb4a658360ea8a1ee9000b3845ffbd8bf1e43a24c1b0678f0c9ed")
+
+build() {
+    cd ${srcdir}/Iosevka-${pkgver} && npm install
+    make custom-config design='term v-brace-straight v-numbersign-slanted' && make custom
+}
+
+package() {
+    install -Dm644 ${srcdir}/Iosevka-${pkgver}/dist/*/*.ttf -t ${pkgdir}/usr/share/fonts/iosevka
+    install -Dm644 ${srcdir}/Iosevka-${pkgver}/LICENSE.md ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.md
+}
+
