@@ -1,0 +1,19 @@
+# Maintainer: Remi Casanova <rc.dev@tuxico.com>
+
+pkgname=ttf-nonfree
+pkgver=1.0
+pkgrel=1
+
+license=('custom')
+pkgdesc="Collection of non-free fonts."
+
+arch=('any')
+depends=('fontconfig' 'xorg-font-utils')
+
+source=("${pkgname}.tar.gz")
+sha256sums=("e72ee765e43069ca0946fa6c4e7fd78cef2c54b51d4eb34cb90b32e910813665")
+
+package() {
+    install -Dm644 ${srcdir}/${pkgname}/*.ttf -t ${pkgdir}/usr/share/fonts/nonfree
+}
+
