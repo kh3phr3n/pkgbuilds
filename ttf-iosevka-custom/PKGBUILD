@@ -3,7 +3,7 @@
 # Contributor: Markus Weimar <mail@markusweimar.de>
 
 pkgname=ttf-iosevka-custom
-pkgver=1.12.5
+pkgver=1.13.0
 pkgrel=1
 
 arch=('any')
@@ -15,15 +15,16 @@ url="https://be5invis.github.io/Iosevka/"
 pkgdesc="Spatial efficient monospace font family for programming."
 
 source=("https://github.com/be5invis/Iosevka/archive/v${pkgver}.tar.gz")
-sha256sums=("fb9ab69308b6d75880db236f1f29e539b4037dfb11c5a5580a48682d4c25bff8")
+sha256sums=("f5a4acf674edbb3610a29d2852543395b01e1971114334f024fcfedb59f0da3d")
 
 build() {
-    cd ${srcdir}/Iosevka-${pkgver} && npm install
-    make custom-config design='term v-brace-straight v-numbersign-slanted' && make custom
+    cd ${srcdir}/Iosevka-${pkgver}
+    sed -i "/^width/s/500/525/" parameters.toml
+    npm install && make custom-config design='term v-brace-straight v-numbersign-slanted' && make custom
 }
 
 package() {
-    install -Dm644 ${srcdir}/Iosevka-${pkgver}/dist/*/*.ttf -t ${pkgdir}/usr/share/fonts/iosevka
+    install -Dm644 ${srcdir}/Iosevka-${pkgver}/dist/*/ttf/*.ttf -t ${pkgdir}/usr/share/fonts/iosevka
     install -Dm644 ${srcdir}/Iosevka-${pkgver}/LICENSE.md ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.md
 }
 
