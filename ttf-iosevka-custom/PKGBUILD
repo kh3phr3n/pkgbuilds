@@ -3,7 +3,7 @@
 # Contributor: Markus Weimar <mail@markusweimar.de>
 
 pkgname=ttf-iosevka-custom
-pkgver=1.13.0
+pkgver=1.13.3
 pkgrel=1
 
 arch=('any')
@@ -15,7 +15,7 @@ url="https://be5invis.github.io/Iosevka/"
 pkgdesc="Spatial efficient monospace font family for programming."
 
 source=("https://github.com/be5invis/Iosevka/archive/v${pkgver}.tar.gz")
-sha256sums=("f5a4acf674edbb3610a29d2852543395b01e1971114334f024fcfedb59f0da3d")
+sha256sums=("7151afba077d6a88aa5c4211d45c22f0411b32f54b9f67742b1cb379903e5e9e")
 
 build() {
     cd ${srcdir}/Iosevka-${pkgver}
