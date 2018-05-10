@@ -4,10 +4,10 @@
 
 pkgname=ttfautohint
 pkgver=1.8.1
-pkgrel=1
+pkgrel=2
 
 arch=('i686' 'x86_64')
-depends=('freetype2' 'harfbuzz')
+depends=('pkg-config' 'freetype2' 'harfbuzz')
 
 license=('GPL2')
 url="http://www.freetype.org/ttfautohint/"
@@ -17,7 +17,8 @@ sha256sums=("12df5120be194d2731e2a3c596892aa218681614c4f924e24279baf69bb7d4f9")
 source=("https://download.savannah.gnu.org/releases/freetype/${pkgname}-${pkgver}.tar.gz")
 
 build() {
-    cd ${srcdir}/${pkgname}-${pkgver} && ./configure --prefix=/usr --with-doc=no --without-qt && make
+    cd ${srcdir}/${pkgname}-${pkgver}
+    ./configure --prefix=/usr --without-qt --without-doc --with-freetype-config='pkg-config freetype2' && make
 }
 
 check() {
