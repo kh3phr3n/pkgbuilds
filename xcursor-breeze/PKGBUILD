@@ -1,22 +1,23 @@
 # Maintainer: Remi Casanova <rc.dev@tuxico.com>
 
-pkgname=xcursor-oxygen
+pkgname=xcursor-breeze
 pkgver=5.13.1
 pkgrel=1
 
 arch=('any')
-conflicts=('oxygen')
+conflicts=('breeze')
 depends=('libxcursor')
 
-license=('LGPL')
-pkgdesc="Oxygen cursor themes"
-url="https://cgit.kde.org/oxygen.git"
+license=('GPL')
+pkgdesc="Breeze cursor themes"
+url="https://cgit.kde.org/breeze.git"
 
-sha256sums=("02d1e3902c70dc1aa28fe6a3b75d2aa3fd9e1774f3ea374f59ef764540cd30e4")
-source=("http://download.kde.org/stable/plasma/${pkgver}/oxygen-${pkgver}.tar.xz")
+sha256sums=("fa232e0e0eae018fb3a9d96ba60e46d6197e17a64ea9740515a6ad67d7445d46")
+source=("https://download.kde.org/stable/plasma/${pkgver}/breeze-${pkgver}.tar.xz")
 
 package() {
-    install -d -m755 ${pkgdir}/usr/share/icons
-    cp -r ${srcdir}/oxygen-${pkgver}/cursors/Oxygen_* ${pkgdir}/usr/share/icons
+    install -dm755 ${pkgdir}/usr/share/icons
+    cp -r ${srcdir}/breeze-${pkgver}/cursors/Breeze/Breeze ${pkgdir}/usr/share/icons
+    cp -r ${srcdir}/breeze-${pkgver}/cursors/Breeze_Snow/Breeze_Snow ${pkgdir}/usr/share/icons
 }
 
