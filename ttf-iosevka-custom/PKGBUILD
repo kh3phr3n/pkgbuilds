@@ -3,7 +3,7 @@
 # Contributor: Markus Weimar <mail@markusweimar.de>
 
 pkgname=ttf-iosevka-custom
-pkgver=1.14.3
+pkgver=2.0.2
 pkgrel=1
 
 arch=('any')
@@ -14,13 +14,19 @@ license=('custom:OFL')
 url="https://be5invis.github.io/Iosevka/"
 pkgdesc="Spatial efficient monospace font family for programming."
 
-source=("https://github.com/be5invis/Iosevka/archive/v${pkgver}.tar.gz")
-sha256sums=("906e7a30245c4458100baef4e31e92b48e24a494b69db8b20bf8204f3b3860a5")
+source=(
+    "private-build-plans.toml"
+    "https://github.com/be5invis/Iosevka/archive/v${pkgver}.tar.gz"
+)
+
+sha256sums=(
+    "389464e0c1c884ba11d6ff763704d0a35776f6e586885c0549ae4f4f0bed023d"
+    "f90fb0ca80ddc9e283a8fd039c5f0f281ede6932a0448f650eeb1b046148875f"
+)
 
 build() {
-    cd ${srcdir}/Iosevka-${pkgver}
-    sed -i "/^width/s/500/525/" parameters.toml
-    npm install && make custom-config design='term v-brace-straight v-numbersign-slanted' && make custom
+    cp private-build-plans.toml ${srcdir}/Iosevka-${pkgver} && cd ${srcdir}/Iosevka-${pkgver} && sed -i "/^width/s/500/525/" parameters.toml
+    npm install && npm run build -- contents:iosevka-custom
 }
 
 package() {

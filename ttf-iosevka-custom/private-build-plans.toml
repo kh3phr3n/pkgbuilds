@@ -1,0 +1,4 @@
+[buildPlans.iosevka-custom]
+family = "Iosevka Term"
+design = ["term", "v-brace-straight", "v-numbersign-slanted"]
+
