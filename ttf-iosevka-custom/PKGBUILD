@@ -3,7 +3,7 @@
 # Contributor: Markus Weimar <mail@markusweimar.de>
 
 pkgname=ttf-iosevka-custom
-pkgver=2.0.2
+pkgver=2.2.1
 pkgrel=1
 
 arch=('any')
@@ -21,12 +21,12 @@ source=(
 
 sha256sums=(
     "389464e0c1c884ba11d6ff763704d0a35776f6e586885c0549ae4f4f0bed023d"
-    "f90fb0ca80ddc9e283a8fd039c5f0f281ede6932a0448f650eeb1b046148875f"
+    "cc9456cd255c496c962c4b85f4b379c755f8610ddea5704bcabd4c60ec5f852c"
 )
 
 build() {
     cd ${srcdir}/Iosevka-${pkgver} && cp ../private-build-plans.toml . && sed -i "/^width/s/500/525/" parameters.toml
-    npm install && npm run build -- contents:iosevka-custom
+    npm install && npm run build -- contents::iosevka-custom
 }
 
 package() {
