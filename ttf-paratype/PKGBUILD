@@ -1,0 +1,37 @@
+# Maintainer: Rémi Casanova <kh3phr3n@nixsys.fr>
+
+pkgname=ttf-paratype
+pkgver=1.0
+pkgrel=1
+
+arch=('any')
+license=('custom:OFL')
+depends=('fontconfig')
+makedepends=('perl-rename')
+
+url="https://www.paratype.com/collections/pt/44157"
+pkgdesc="PT Public Pack fonts collection by Paratype."
+
+source=(
+    "PT Public Pack_OtTt.zip"
+    "PT Sans Pro Demi_OtPs.zip"
+)
+
+sha256sums=(
+    "636fde50bdba7b371163f95b8ff6303d299305320fb72d2a1492dad3ba46807d"
+    "ed27830c2bfddc24b360ed69ebde22ea3ca39eea63a2a7fd220ca565cd712eb5"
+)
+
+build() {
+    # Move all ttf fonts to the same directory
+    mv ${srcdir}/Fonts/*/*.ttf ${srcdir}/Fonts
+
+    # Rename all font filenames without spaces...
+    perl-rename 's/_/-/g;s/ //g' ${srcdir}/Fonts/*.*tf
+}
+
+package() {
+    install -Dm644 ${srcdir}/Fonts/*.*tf -t ${pkgdir}/usr/share/fonts/paratype
+    install -Dm644 ${srcdir}/Documents/OFL.txt ${pkgdir}/usr/share/licenses/${pkgname}/OFL.txt
+}
+
