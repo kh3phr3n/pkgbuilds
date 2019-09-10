@@ -1,16 +1,16 @@
-# Maintainer: Remi Casanova <rc.dev@tuxico.com>
+# Maintainer: Rémi Casanova <kh3phr3n@nixsys.fr>
 # Contributor: Andy Kluger <AndyKluger@gmail.com>
 # Contributor: Markus Weimar <mail@markusweimar.de>
 
 pkgname=ttf-iosevka-custom
-pkgver=2.2.1
+pkgver=2.3.0
 pkgrel=1
 
 arch=('any')
+license=('custom:OFL')
 depends=('fontconfig' 'xorg-font-utils')
 makedepends=('git' 'npm' 'nodejs' 'otfcc' 'ttfautohint')
 
-license=('custom:OFL')
 url="https://be5invis.github.io/Iosevka/"
 pkgdesc="Spatial efficient monospace font family for programming."
 
@@ -21,7 +21,7 @@ source=(
 
 sha256sums=(
     "389464e0c1c884ba11d6ff763704d0a35776f6e586885c0549ae4f4f0bed023d"
-    "cc9456cd255c496c962c4b85f4b379c755f8610ddea5704bcabd4c60ec5f852c"
+    "b10e45bc10f6cd5986e4b1f91db55879c66be390ba6643e5ad4755c3941f1d81"
 )
 
 build() {
@@ -30,7 +30,7 @@ build() {
 }
 
 package() {
-    install -Dm644 ${srcdir}/Iosevka-${pkgver}/dist/*/ttf/*.ttf -t ${pkgdir}/usr/share/fonts/iosevka
+    install -Dm644 ${srcdir}/Iosevka-${pkgver}/dist/*/ttf/*.ttf -t ${pkgdir}/usr/share/fonts/iosevka-custom
     install -Dm644 ${srcdir}/Iosevka-${pkgver}/LICENSE.md ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.md
 }
 
