@@ -8,7 +8,7 @@ pkgrel=1
 
 arch=('any')
 license=('custom:OFL')
-depends=('fontconfig' 'xorg-font-utils')
+depends=('fontconfig')
 makedepends=('git' 'npm' 'nodejs' 'otfcc' 'ttfautohint')
 
 url="https://be5invis.github.io/Iosevka/"
@@ -20,7 +20,7 @@ source=(
 )
 
 sha256sums=(
-    "389464e0c1c884ba11d6ff763704d0a35776f6e586885c0549ae4f4f0bed023d"
+    "11ff4ea8770bf7a9346e930e08cf0994e114375dbae2f1efbd48e89aa62d8e64"
     "b10e45bc10f6cd5986e4b1f91db55879c66be390ba6643e5ad4755c3941f1d81"
 )
 
