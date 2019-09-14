@@ -25,7 +25,7 @@ sha256sums=(
 )
 
 build() {
-    cd ${srcdir}/Iosevka-${pkgver} && cp ../private-build-plans.toml . && sed -i "/^width/s/500/525/" parameters.toml
+    cd ${srcdir}/Iosevka-${pkgver} && cp ../private-build-plans.toml . && sed -i "/^width/s/500/525/;/^descender/s/65/0/" parameters.toml
     npm install && npm run build -- contents::iosevka-custom
 }
 
