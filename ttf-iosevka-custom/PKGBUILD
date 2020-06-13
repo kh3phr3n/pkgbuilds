@@ -3,7 +3,7 @@
 # Contributor: Markus Weimar <mail@markusweimar.de>
 
 pkgname=ttf-iosevka-custom
-pkgver=2.3.2
+pkgver=2.3.3
 pkgrel=1
 
 arch=('any')
@@ -21,7 +21,7 @@ source=(
 
 sha256sums=(
     "11ff4ea8770bf7a9346e930e08cf0994e114375dbae2f1efbd48e89aa62d8e64"
-    "e946b0bc35326df94b9b2846d220e28aec0800767ed5ece8ae7eb891916074ef"
+    "dabe2fb94c173e24d9bf68877e60041787a215ff0168a096e55c667d16ddc4b6"
 )
 
 build() {
