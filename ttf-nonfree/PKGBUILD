@@ -5,7 +5,7 @@ pkgver=1.0
 pkgrel=1
 
 license=('custom')
-pkgdesc="Collection of non-free fonts."
+pkgdesc="Collection of nonfree fonts."
 
 arch=('any')
 depends=('fontconfig')
