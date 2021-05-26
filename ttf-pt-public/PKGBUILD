@@ -7,31 +7,22 @@ pkgrel=1
 arch=('any')
 license=('custom:OFL')
 depends=('fontconfig')
-makedepends=('perl-rename')
 
 url="https://www.paratype.com/collections/pt/44157"
 pkgdesc="PT Public Pack fonts collection by Paratype."
 
 source=(
-    "PT Public Pack_OtTt.zip"
-    "PT Sans Pro Demi_OtPs.zip"
+    "PT-Public-Pack.ottt.zip"
+    "PT-Sans-Pro_Demi.otps.zip"
 )
 
 sha256sums=(
-    "5ed3d8b3b375152e286ce82b96d5b46aba67d5b3c07aa06f5b0f716196dd1441"
-    "b1d2e6ff87a9e6f4c1f53eba3278aa542180c353fa5af869ca371a1c80491944"
+    "e6f447b7912e37bd12579e57bf3121e39408cf0b0803c27da92a7cc0cf8b7575"
+    "c04164f8daf5fd9d26a225e4fe0c9d259c4e202ad1fce85b3a5fb47c325f2a56"
 )
 
-build() {
-    # Move all ttf fonts to the same directory
-    mv ${srcdir}/Fonts/*/*.ttf ${srcdir}/Fonts
-
-    # Rename all font filenames without spaces...
-    perl-rename 's/_/-/g;s/ //g' ${srcdir}/Fonts/*.*tf
-}
-
 package() {
-    install -Dm644 ${srcdir}/Fonts/*.*tf -t ${pkgdir}/usr/share/fonts/pt-public
-    install -Dm644 ${srcdir}/Documents/OFL.txt ${pkgdir}/usr/share/licenses/${pkgname}/OFL.txt
+    install -Dm644 ${srcdir}/PT/PT/*/*.*tf -t ${pkgdir}/usr/share/fonts/pt-public
+    install -Dm644 ${srcdir}/OFL.txt ${pkgdir}/usr/share/licenses/${pkgname}/OFL.txt
 }
 
