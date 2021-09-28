@@ -1,0 +1,24 @@
+# Maintainer: Rémi Casanova <kh3phr3n@nixsys.fr>
+
+pkgname=staruml
+pkgver=4.1.2
+pkgrel=1
+
+arch=('x86_64')
+depends=('libxss' 'libxtst' 'nss' 'alsa-lib' 'gtk2')
+
+license=('custom')
+url="https://staruml.io/"
+pkgdesc="A sophisticated software modeler for agile and concise modeling."
+
+source=("https://staruml.io/download/releases-v4/StarUML_${pkgver}_amd64.deb")
+sha256sums=("a41bf4c2ad2dd357d99f8b487affabb6a2af3e5a0a13298cc9968ae86f7741fb")
+
+package() {
+    # Extract package data
+    tar xf ${srcdir}/data.tar.xz -C ${pkgdir}
+
+    # Package license
+    install -Dm644 ${pkgdir}/opt/StarUML/LICENSES.chromium.html ${pkgdir}/usr/share/licenses/${pkgname}/LICENSES
+}
+
