@@ -1,7 +1,7 @@
 # Maintainer: Rémi Casanova <kh3phr3n@nixsys.fr>
 
 pkgname=staruml
-pkgver=4.1.6
+pkgver=5.0.2
 pkgrel=1
 
 arch=('x86_64')
@@ -11,8 +11,8 @@ license=('custom')
 url='https://staruml.io/'
 pkgdesc='A sophisticated software modeler for agile and concise modeling.'
 
-source=("https://staruml.io/download/releases-v4/StarUML_${pkgver}_amd64.deb")
-sha256sums=('09439da51f1113130b78e5fce3af5e804368b4c36e3d4e33f12d481aa036d73d')
+source=("https://staruml.io/download/releases-v5/StarUML_${pkgver}_amd64.deb")
+sha256sums=('735fe7857c38361e4c05a089fe6547e4b802bc553c3712121a3d68dfa7379599')
 
 package() {
     # Extract package data
