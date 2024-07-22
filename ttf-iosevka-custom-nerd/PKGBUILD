@@ -1,0 +1,26 @@
+# Maintainer: Rémi Casanova <kh3phr3n@nixsys.fr>
+
+pkgname=ttf-iosevka-custom-nerd
+pkgver=2.3.3
+pkgrel=1
+
+arch=('any')
+license=('custom:OFL')
+depends=('fontconfig')
+
+url="https://be5invis.github.io/Iosevka/"
+pkgdesc="Spatial efficient monospace font family for programming."
+
+source=(
+    "${pkgname}.zip"
+)
+
+sha256sums=(
+    "c25b7cd73d5e0e804d8e41366d52f49661cf3154f2f72230fec0444875d46768"
+)
+
+package() {
+    install -Dm644 ${srcdir}/${pkgname}/*.ttf -t ${pkgdir}/usr/share/fonts/iosevka-custom-nerd
+    install -Dm644 ${srcdir}/${pkgname}/LICENSE.md ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.md
+}
+
