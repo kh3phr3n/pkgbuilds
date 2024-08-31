@@ -1,0 +1,24 @@
+# Maintainer: Rémi Casanova <kh3phr3n@nixsys.fr>
+
+pkgname=nordic-gtk-theme
+pkgver=2.2.0
+pkgrel=1
+
+arch=('any')
+optdepends=(
+    'gtk-engines: GTK2 support'
+    'gtk-engine-murrine: GTK2 support'
+)
+
+license=('GPL3')
+pkgdesc='Nord-derived theme for GTK'
+url='https://github.com/EliverLara/Nordic'
+
+sha256sums=('6f5e504e4f11e222547bc1f6b355d169436822588ce440d263dad319016e80cb')
+source=("https://github.com/EliverLara/Nordic/releases/download/v${pkgver}/Nordic-bluish-accent-standard-buttons.tar.xz")
+
+package() {
+    install -dm755 ${pkgdir}/usr/share/themes/Nordic && cp -r ${srcdir}/Nordic-bluish-accent-standard-buttons/* ${pkgdir}/usr/share/themes/Nordic
+    install -Dm644 ${srcdir}/Nordic-bluish-accent-standard-buttons/LICENSE ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE
+}
+
