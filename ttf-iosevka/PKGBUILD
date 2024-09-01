@@ -1,0 +1,34 @@
+# Maintainer: Rémi Casanova <kh3phr3n@nixsys.fr>
+
+pkgname=ttf-iosevka
+pkgver=31.5.0
+pkgrel=1
+
+arch=('any')
+license=('OFL')
+depends=('fontconfig')
+makedepends=('npm' 'nodejs' 'ttfautohint')
+
+url='https://typeof.net/Iosevka/'
+pkgdesc='Spatial efficient monospace font family for programming.'
+
+source=(
+    'private-build-plans.toml'
+    "https://github.com/be5invis/Iosevka/archive/refs/tags/v${pkgver}.tar.gz"
+)
+
+sha256sums=(
+    '0056291c2cd3ccc87b3b14d3d381a39cc925418f08dc22c04c9c9398fd76f75b'
+    '6cc922a0dbad051901658a5604b1a5350ae560fcc011c5edcea24d8e9431166e'
+)
+
+build() {
+    cd ${srcdir}/Iosevka-${pkgver} && cp ../private-build-plans.toml .
+    npm install && npm run build -- ttf::Iosevka
+}
+
+package() {
+    install -Dm644 ${srcdir}/Iosevka-${pkgver}/dist/*/TTF/*.ttf -t ${pkgdir}/usr/share/fonts/iosevka
+    install -Dm644 ${srcdir}/Iosevka-${pkgver}/LICENSE.md ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.md
+}
+
