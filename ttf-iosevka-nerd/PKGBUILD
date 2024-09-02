@@ -1,0 +1,47 @@
+# Maintainer: Rémi Casanova <kh3phr3n@nixsys.fr>
+
+pkgname=ttf-iosevka-nerd
+pkgver=31.5.0
+nfpver=3.2.1
+pkgrel=1
+
+arch=('any')
+license=('OFL')
+depends=('fontconfig')
+noextract=('FontPatcher.zip')
+makedepends=('npm' 'nodejs' 'fontforge' 'ttfautohint')
+
+url='https://typeof.net/Iosevka/'
+pkgdesc='Spatial efficient monospace font family for programming.'
+
+source=(
+    'private-build-plans.toml'
+    "https://github.com/be5invis/Iosevka/archive/refs/tags/v${pkgver}.tar.gz"
+    "https://github.com/ryanoasis/nerd-fonts/releases/download/v${nfpver}/FontPatcher.zip"
+)
+
+sha256sums=(
+    '0056291c2cd3ccc87b3b14d3d381a39cc925418f08dc22c04c9c9398fd76f75b'
+    '6cc922a0dbad051901658a5604b1a5350ae560fcc011c5edcea24d8e9431166e'
+    '7825c0507457437facecad6216ade1a1bffd9f24b9f5c59e5e84958dbb31f2d6'
+)
+
+build() {
+    # Build Iosevka fonts
+    cd ${srcdir}/Iosevka-${pkgver} && cp ../private-build-plans.toml .
+    npm install && npm run build -- ttf::Iosevka
+
+    # Prepare Nerd Fonts Patcher
+    unzip ../FontPatcher.zip -d ./dist/Iosevka/TTF/FontPatcher && cd ./dist/Iosevka/TTF
+
+    # Apply Nerd Fonts
+    for font in *.ttf; do
+        fontforge -script ./FontPatcher/font-patcher --mono --careful --complete --makegroups 4 --outputdir ./patched ${font}
+    done
+}
+
+package() {
+    install -Dm644 ${srcdir}/Iosevka-${pkgver}/dist/*/TTF/patched/*.ttf -t ${pkgdir}/usr/share/fonts/iosevka-nerd
+    install -Dm644 ${srcdir}/Iosevka-${pkgver}/LICENSE.md ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.md
+}
+

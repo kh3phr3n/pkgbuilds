@@ -1,0 +1,33 @@
+[buildPlans.Iosevka]
+family = "Iosevka"
+spacing = "fixed"
+serifs = "sans"
+noCvSs = true
+exportGlyphNames = false
+
+[buildPlans.Iosevka.metricOverride]
+leading = 1500
+
+[buildPlans.Iosevka.variants.design]
+g = "double-storey"
+brace = "straight"
+guillemet = "straight"
+number-sign = "slanted"
+
+[buildPlans.Iosevka.weights.SemiBold]
+shape = 600
+menu = 600
+css = 600
+
+# Linux
+[buildPlans.Iosevka.widths.Extended]
+shape = 600
+menu = 7
+css = "expanded"
+
+# macOS
+# [buildPlans.Iosevka.widths.ExtraExtended]
+# shape = 658
+# menu = 8
+# css = "extra-expanded"
+
