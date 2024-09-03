@@ -1,6 +1,6 @@
 # Maintainer: Rémi Casanova <kh3phr3n@nixsys.fr>
 
-pkgname=ttf-iosevka-nerd
+pkgname=ttf-iosevka-nfm
 pkgver=31.5.0
 nfpver=3.2.1
 pkgrel=1
@@ -41,7 +41,7 @@ build() {
 }
 
 package() {
-    install -Dm644 ${srcdir}/Iosevka-${pkgver}/dist/*/TTF/patched/*.ttf -t ${pkgdir}/usr/share/fonts/iosevka-nerd
+    install -Dm644 ${srcdir}/Iosevka-${pkgver}/dist/*/TTF/patched/*.ttf -t ${pkgdir}/usr/share/fonts/iosevka-nfm
     install -Dm644 ${srcdir}/Iosevka-${pkgver}/LICENSE.md ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.md
 }
 
